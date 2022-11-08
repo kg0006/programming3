@@ -5,10 +5,11 @@ var grasses = [];
 var grassEater = [];
 var hunterArr = [];
 var predator = [];
+var livingcreature = []; //livingcreature
 
 function setup() {
 
-    function matrixGenerator(matrixSize, grassCount, grassEaterCount, hunterCount, predatorCount) {
+    function matrixGenerator(matrixSize, grassCount, grassEaterCount, hunterCount, predatorCount,livingcreatureCount) {
         for (let i = 0; i < matrixSize; i++) {
         matrix[i] = []
         for (let o = 0; o < matrixSize; o++) {
@@ -36,6 +37,12 @@ function setup() {
             matrix[y][x] = 4;
         
         }
+        for (let i = 0; i < livingcreatureCount; i++) {
+            let x = Math.floor(random(matrixSize));
+            let y = Math.floor(random(matrixSize));
+            matrix[y][x] = 5;
+        
+        }
     }
         matrixGenerator(50, 50, 20, 20, 20);
 
@@ -58,6 +65,10 @@ function setup() {
               if (matrix[y][x] == 4) {
                 let predatorObject = new Predator(x,y);
                 predator.push(predatorObject)
+              }
+              if (matrix[y][x] == 5) {
+                let livingcreatureObject = new LivingCreature(x,y);
+                livingcreature.push(livingcreatureObject)
               }
           
         }
@@ -92,6 +103,10 @@ function draw() {
             }
             else if (matrix[y][x] == 4) {
                 fill("blue");
+                rect(x * side, y * side, side, side);
+            }
+            else if (matrix[y][x] == 5) {
+                fill("purple");
                 rect(x * side, y * side, side, side);
             }
         }

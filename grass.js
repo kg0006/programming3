@@ -1,5 +1,6 @@
-class Grass{
+class Grass extends LivingCreature{
     constructor(x, y){
+        super(x, y);
         this.x = x; 
         this.y = y; 
         this.multiply = 0;
@@ -15,18 +16,7 @@ class Grass{
         ];
     }
 
-    chooseCell(character) {
-        var found = [];
-        for (var i in this.directions) {
-            var newX = this.directions[i][0];
-            var newY = this.directions[i][1];
-            if (newX >= 0 && newX < matrix[0].length && newY >= 0 && newY < matrix.length)
-                if (matrix[newY][newX] == character) {
-                    found.push(this.directions[i]);
-                }
-        }
-        return found;
-    }
+    
 
     mul () {
         this.multiply++;
